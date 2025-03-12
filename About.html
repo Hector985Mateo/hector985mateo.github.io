@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hector's About</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: flex-start;
+            align-items: center;
+            /*overflow: hidden; /* Ensure no scrollbars appear */
+        }
+
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: fixed;
+            top: 5px;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            text-align: left;
+            margin-right: 2rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 1.5rem;
+            text-align: left;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+
+        .container {
+            flex: 1;
+            padding: 2rem;
+            text-align: left;
+            margin-top: 3rem; /* move the layout up or down */
+            width: 90%;
+            max-width: 1200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex; /* Use flexbox to align text and image side by side */
+            justify-content: space-between;
+            align-items: flex-start;
+            z-index: 1; /* Ensure content is above the video */
+        }
+
+        .text-content {
+            width: 60%; /* Adjust the width of the text area */
+        }
+
+        h1 {
+            color: #00ff00;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #ccc;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .image-content {
+            width: 35%; /* Adjust the width of the image area */
+            margin-left: 2rem; /* Space between text and image */
+        }
+
+        .image-content img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .cta a {
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 2px solid #00ff00;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .cta a:hover {
+            background-color: #00ff00;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Video Background -->
+    <video autoplay muted loop class="video-background">
+        <source src="StarVid2.mp4" type="video/mp4">
+    </video>
+
+    <nav class="navbar">
+        <div class="logo">
+            <!-- <span>H</span> -->
+            <p><!-- Hector --></p>
+        </div>
+        <ul>
+            
+            <li><a href="Main.html"><i class="home-icon"></i> Home</a></li>
+
+            <li><a href="About.html"><i class="user-icon"></i> About</a></li>
+
+            <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
+
+            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
+              target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+
+            <li><a href="https://github.com/Hector985Mateo"
+              target="_blank"><i class="email-icon"></i> GitHub</a></li>
+
+            <li><a href="Resume.html"><i class="resume"></i> Resume</a></li>
+
+            <!-- <li><a href="#"><i class="settings-icon"></i> Services</a></li> -->
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="text-content">
+            <h1>About Me</h1>
+            <p>Hello! I'm Hector, a passionate Data Scientist and Web Developer with a knack for turning data into actionable insights and building interactive web experiences.</p>
+            
+            <h2>Background</h2>
+            <p>My journey began at the University of California Berkeley, where I was introduced to python and Java by John DeNero, Michael Ball and Josh Hug. From writing 'Hello World!' to Build Your Own World (BYOW) I discovered my passion in writing code and have been teaching myself new techniques, skills and now making web pages.</p>
+            
+            <h2>Skills & Expertise</h2>
+            <p>I'm proficient in various programming languages and tools, including Python, JavaScript, and SQL. My expertise lies in web designing, data visualization, data cleaning and data analysis. I prefer SQL and python as my choice of coding language.</p>
+            <!--
+            <h2>Mission</h2>
+            <p>My mission is to leverage data and technology to create meaningful solutions that impact lives and businesses. I am driven by a passion for continuous learning and innovation.</p>
+            -->
+            <h2>Personal Interests</h2>
+            <p>I'm working on different projects, from web creations, short video game BYOW (Java) and even archiving programs/files I like such as my Pokemon save files, lost media, and many more.</p>
+        </div>
+        <div class="image-content">
+            <img src="Profile2.jpg">
+            <img src="Profile.jpg">
+        </div>
+    </div>
+</body>
+</html>
+
+
+©Mateo2025

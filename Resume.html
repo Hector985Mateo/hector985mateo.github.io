@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hector's Resume</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            text-align: left;
+            margin-right: 2rem;
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 1.5rem;
+            text-align: left;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            text-align: left;
+            margin-top: 3rem; /* move the layout up or down */
+            width: 90%;
+            max-width: 1200px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0 0 1.5rem 0;
+            color: #00ff00;
+        }
+
+        .resume-section {
+            margin-bottom: 2rem;
+        }
+
+        .resume-section h2 {
+            color: #00ff00;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .resume-section p,
+        .resume-section ul {
+            font-size: 1.2rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .resume-section ul {
+            padding-left: 1.5rem;
+        }
+
+        .resume-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <!-- <span>H</span> -->
+            <p><!-- Hector --></p>
+        </div>
+        <ul>
+            <li><a href="Main.html"><i class="home-icon"></i> Home</a></li>
+            <li><a href="About.html"><i class="user-icon"></i> About</a></li>
+            <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
+            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/" target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+            <li><a href="https://github.com/Hector985Mateo" target="_blank"><i class="email-icon"></i> GitHub</a></li>
+            <li><a href="Resume.html"><i class="resume"></i> Resume</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <h1>My Resume</h1>
+
+        <!--<h2>Download Resume Here:</h2>
+        <a href="Resume.pdf" target="_blank">Resume</a> -->
+
+        <div class="resume-section">
+            <h2>Education</h2>
+            <p><strong>Bachelors of Arts in Data Science</strong><br>
+            University of California, Berkeley, 2024</p>
+        </div>
+
+        <div class="resume-section">
+            <h2>Experience</h2>
+            <ui> Designing and creating websites like this one to show  </ui>
+            <!--<p><strong>Data Scientist / Web Developer</strong><br>
+            ABC Company, 2020-Present</p>
+            <ul>
+                <li>Developed data visualization tools that increased data processing efficiency by 20%.</li>
+                <li>Built and maintained multiple web applications using JavaScript, Python, and SQL.</li>
+                <li>Collaborated with cross-functional teams to design and implement machine learning models.</li>
+            </ul>
+
+            <p><strong>Research Assistant</strong><br>
+            Dalian University of Technology, 2018-2020</p>
+            <ul>
+                <li>Conducted research on computational biology, resulting in a publication in a peer-reviewed journal.</li>
+                <li>Analyzed large genomic datasets to identify patterns and anomalies.</li>
+            </ul>
+          -->
+        </div>
+
+        <!--<embed src="Resume.pdf" type="application/pdf" width="100%" height="600px" /> -->
+
+        <div class="resume-section">
+            <h2>Skills</h2>
+            <ul>
+                <li>Programming Languages: Python, JavaScript, SQL</li>
+                <li>Data Analysis: Pandas, NumPy, Scikit-Learn</li>
+                <li>Web Development: HTML, CSS, JavaScript</li>
+                <li>Tools: Git, VSCode, Intelij</li>
+            </ul>
+        </div>
+
+        <div class="resume-section">
+            <h2>Certifications</h2>
+            <ui> COMING SOON </ui>
+            <!--<ul>
+                <li>Certified Data Scientist, XYZ Institute</li>
+                <li>Professional Web Developer, ABC Organization</li>
+            </ul>
+          -->
+        </div>
+
+        <div class="resume-section">
+            <h2>Awards</h2>
+            <ul>
+                <li>Superb Dedication, 2024</li>
+                <li>USC University Relations and the Theda Douglas Foundation Scholarship, 2019</li>
+            </ul>
+        </div>
+
+            <h2>Download My Resume Here:</h2>
+            <a href="Resume.pdf" target="_blank" style="color: white;">Resume</a>
+    </div>
+</body>
+</html>
+©Mateo2025

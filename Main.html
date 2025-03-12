@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hector's Main Page</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden; 
+        }
+
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem;
+            display: flex;
+            justify-content: flex-start; 
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            text-align: left;
+            margin-right: 2rem; 
+        }
+
+        .navbar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-right: 1.5rem;
+            text-align: left;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        .content {
+            flex: 1;
+            padding: 2rem;
+            text-align: left;
+            margin-top: 5rem;
+            width: 90%;
+            max-width: 1200px;
+            z-index: 1; 
+        }
+
+        .content h1 {
+            font-size: 4rem;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .content h1 .name {
+            color: #00ff00;
+        }
+
+        .content .description {
+            margin: 1rem 0;
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        .content .contact-btn {
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            border: 2px solid #0f0;
+            color: #00ff00;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
+        .big-j {
+            font-size: 20rem;
+            font-weight: bold;
+            color: #f05;
+            position: absolute;
+            right: 2rem;
+            bottom: 2rem;
+        }
+
+        .big-j span {
+            background: linear-gradient(90deg, #0ef 50%, #f05 50%);
+            -webkit-background-clip: text; 
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- My Video Background -->
+    <video autoplay muted loop class="video-background" id="bg-video">
+        <source src="" type="video/mp4" id="video-source">
+        Your browser does not support the video tag.
+    </video>
+
+    <nav class="navbar">
+        <div class="logo">
+            <!-- <span>H</span> -->
+            <p><!-- Hector --></p>
+        </div>
+        <ul>
+            <li><a href="Main.html"><i class="home-icon"></i> Home</a></li>
+
+            <li><a href="About.html"><i class="user-icon"></i> About</a></li>
+
+            <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
+
+            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
+                target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+
+            <li><a href="https://github.com/Hector985Mateo"
+                target="_blank"><i class="email-icon"></i> GitHub</a></li>
+
+            <li><a href="Resume.html"><i class="resume"></i> Resume</a></li> 
+
+        </ul>
+    </nav>
+
+
+    <div class="content">
+        <h1>Hi, <br> I'm <span class="name">Hector</span>, <br> Data Scientist 
+            and Web Developer.</h1>
+            <p class="description" style="background-color: black; color: white; padding: 10px; display: inline-block;">Data Visualizer / Data Analyst / Web Developer / Media Archivist</p>
+        <!-- <a href="#" class="contact-btn">CONTACT ME</a> -->
+    </div>
+
+    <script>
+        const videos = [
+            //"Codevid1.mp4",    // Coding backgorund
+            "Codevid2.mp4",    // Office working setup
+            //"Codevid3.mp4",
+            //"Codevid4.mp4",   // Blurry shaky 
+            //"Codevid5.mp4"
+        ];
+
+        const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+
+        document.getElementById('video-source').src = randomVideo;
+
+        document.getElementById('bg-video').load();
+    </script>
+</body>
+</html>
+
+
+©Mateo2025
+<!-- https://icons8.com/icons/set/git-hub -->
