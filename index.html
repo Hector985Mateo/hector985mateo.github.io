@@ -12,10 +12,11 @@
             color: #fff;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             justify-content: flex-start;
             align-items: center;
-            overflow: hidden; 
+            overflow-y: auto; /* ✅ Allows scrolling */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
 
         .video-background {
