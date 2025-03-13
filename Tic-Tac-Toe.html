@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe!</title>
+    <style>
+        .board {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            grid-template-rows: repeat(3, 100px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .cell {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgray;
+            width: 100px;
+            height: 100px;
+            font-size: 2em;
+            cursor: pointer;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe!</h1>
+    <div>
+        <label>Player 1 (X): </label> 
+        <input type="text" id="player1" placeholder="Enter Player 1's name">
+    </div>
+    <div>
+        <label>Player 2 (O): </label>
+        <input type="text" id="player2" placeholder="Enter Player 2's name">
+    </div>
+
+    <label>If you don't input a name, Player 1/Player 2 are the generic names.</label>
+
+    <br>
+    <h2 id="turnMessage"></h2>
+    <h3 id="winCounts"></h3>
+    <div class="board">
+        <div class="cell" data-index="0"></div>
+        <div class="cell" data-index="1"></div>
+        <div class="cell" data-index="2"></div>
+        <div class="cell" data-index="3"></div>
+        <div class="cell" data-index="4"></div>
+        <div class="cell" data-index="5"></div>
+        <div class="cell" data-index="6"></div>
+        <div class="cell" data-index="7"></div>
+        <div class="cell" data-index="8"></div>
+    </div>
+
+    <!-- Start and Restart Buttons -->
+    <button onclick="startGame()">Start Game</button>
+    <button onclick="restartGame()">Restart Game</button>
+    <button onclick="endGame()">End Game</button>
+
+    <script>
+        let currentPlayer = 'X';
+        let gameState = Array(9).fill(null);
+        let gameActive = true;
+        let player1Name = '';
+        let player2Name = '';
+        let player1Wins = 0;
+        let player2Wins = 0;
+
+        const winPatterns = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8],
+            [0, 3, 6], [1, 4, 7], [2, 5, 8],
+            [0, 4, 8], [2, 4, 6]
+        ];
+
+
+        function updateTurnMessage() {
+            document.getElementById('turnMessage').textContent =
+                currentPlayer === 'X' ? `${player1Name}'s (X) turn` : `${player2Name}'s (O) turn`;
+        }
+
+        function updateWinCounts() {
+            document.getElementById('winCounts').textContent = `${player1Name} wins: ${player1Wins} | ${player2Name} wins: ${player2Wins}`;
+        }
+
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', (event) => {
+                const index = event.target.dataset.index;
+
+                if (gameActive && !gameState[index]) {
+                    gameState[index] = currentPlayer;
+                    event.target.textContent = currentPlayer;
+
+                    if (checkWin()) {
+                        gameActive = false;
+                        if (currentPlayer === 'X') {
+                            player1Wins++;
+                            document.getElementById('turnMessage').textContent = `${player1Name} (X) wins!`;
+                        } else {
+                            player2Wins++;
+                            document.getElementById('turnMessage').textContent = `${player2Name} (O) wins!`;
+                        }
+                        updateWinCounts();
+                    } else if (gameState.every(cell => cell !== null)) {
+                        document.getElementById('turnMessage').textContent = `It's a draw!`;
+                        gameActive = false;
+                    } else {
+                        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                        updateTurnMessage();
+                    }
+                }
+            });
+        });
+
+        function checkWin() {
+            return winPatterns.some(pattern => {
+                return pattern.every(index => gameState[index] === currentPlayer);
+            });
+        }
+        
+        function restartGame() {
+            gameState.fill(null);
+            gameActive = true;
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+            });
+            currentPlayer = 'X';
+
+            player1Name = document.getElementById('player1').value || 'Player 1';
+            player2Name = document.getElementById('player2').value || 'Player 2';
+
+            updateTurnMessage();
+        }
+
+        function startGame() {
+            player1Wins = 0;
+            player2Wins = 0;
+            restartGame();
+            updateWinCounts();
+        }
+
+        function endGame() {
+            let winnerMessage;
+            if (player1Wins > player2Wins) {
+                winnerMessage = `${player1Name} wins the game with ${player1Wins} wins!`;
+            } else if (player2Wins > player1Wins) {
+                winnerMessage = `${player2Name} wins the game with ${player2Wins} wins!`;
+            } else {
+                winnerMessage = `The game is tied with both players having ${player1Wins} wins!`;
+            }
+            alert(winnerMessage);
+            player1Wins = 0;
+            player2Wins = 0;
+            updateWinCounts();
+            gameState.fill(null);
+            gameActive = true;
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+        startGame();
+    </script>
+</body>
+</html>
