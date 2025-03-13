@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Old-School Youtube (2009 Clone)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #fff;
+            margin: 0;
+            padding: 2rem;
+            position: relative;
+        }
+        .top-right-image {
+            position: absolute;
+            top: 0;
+            left: 220px;
+            width: 150px;
+            height: auto;
+        }
+        .link-container, .link-container2, .link-container3 {
+            display: flex;
+            gap: 20px;
+        }
+        .link-container {
+            position: absolute;
+            top: 73px;
+            left: 390px;
+        }
+        .link-container2 {
+            position: relative;
+            top: -84px;
+            right: -930px;
+        }
+        .link-container3 {
+            position: relative;
+            top: -79px;
+            margin-right: 180px;
+            right: -960px;
+        }
+        .link-container a, .link-container2 a, .link-container3 a {
+            color: #3654ae;
+            text-decoration: none;
+        }
+        .link-container a:hover, .link-container2 a:hover, .link-container3 a:hover {
+            text-decoration: underline;
+        }
+        .search-container {
+            display: flex;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            position: absolute;
+            top: 20px;
+            left: 390px;
+            box-shadow: 0 0 0 2px rgba(62, 64, 64, 0.281);
+        }
+        .search-input {
+            border: none;
+            padding: 0.5rem;
+            font-size: 1rem;
+            width: 400px;
+            box-sizing: border-box;
+        }
+        .search-button {
+            background-color: #fff;
+            border: 1px solid #6bb9e0;
+            color: #0064d2;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .move-up-down {
+            position: absolute;
+            top: 40px;
+            left: 230px;
+        }
+
+        /* Main navigation bar */
+        .nav-bar {
+            display: flex;
+            background-color: #d3d3d3;
+            padding: 8px;
+            align-items: center;
+            position: absolute; /* Set the position to fixed */
+            top: 117px; /* Adjust top position to match your layout */
+            left: 470px; /* Adjust left position as needed */
+            width: 720px; /* Set the width to a fixed size, adjust as needed */
+            margin: 0 auto; /* Center the bar horizontally */
+            z-index: 1000; /* Ensure the bar stays on top */
+        }
+        /* Tab styles */
+        .tab {
+            padding: 5px 10px;
+            background-color: #444;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin-right: 5px;
+            border-radius: 3px;
+            font-size:  15px;
+        }
+        .tab:hover {
+            background-color: black;
+        }
+        .active-tab {
+            background-color: #444;
+        }
+
+        /* Subscribe button style */
+        .subscribe-btn {
+            background-color: #ffcc00;
+            color: black;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            margin-left: auto; /* Push the subscribe button to the right */
+            font-size: 15px;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #ffdd00;
+        }
+
+
+        /* UPLOAD BUTTON */
+        .Upload {
+            background-color: #ffcc00;
+            color: black;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 32px; /* Adjust this to move it further down */
+            left: 570px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+
+        .Upload:hover {
+            background-color: #ffdd00;
+        }
+
+
+        /* Horizontal Sidebar*/
+        .sidebar {
+            width: 200px;
+            background-color: #d3d3d3;
+            padding: 10px;
+            border-radius: 10px;
+            position: relative;
+            top: -60px;
+            left: 200px;
+        }
+        .sidebar h3 {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            margin: 0 0 10px;
+            font-size: 18px;
+            border-radius: 10px 10px 0 0;
+        }
+        .sidebar a, .sidebar p {
+            display: block;
+            padding: 8px 10px;
+            color: black;
+            text-decoration: none;
+            font-size: 14px;
+            border-radius: 5px;
+        }
+        .sidebar a:hover {
+            background-color: #bbb;
+        }
+        .non-clickable-text {
+            color: black;
+            position: relative;
+            top: -15px;
+        }
+
+        /* Custom line styling */
+        .custom-line {
+            border: none;
+            height: 3px;  /* Thickness of the line */
+            background-color: rgb(142, 142, 145);  /* Color of the line */
+            width: 980px;  /* Fixed width */
+            margin-top: 65px;  /* Vertical position */
+            margin-left: 200px;  /* Horizontal position */
+            border-radius: 10px; /* Rounded corners */
+        }
+
+        .below-horizontal-bar{
+            color: black;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 159px; /* Adjust this to move it further down */
+            left: 490px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar2{
+            color: #444;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: -1px; /* Adjust this to move it further down */
+            left: -25px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar3{
+            color: blue;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 1px; /* Adjust this to move it further down */
+            left: 200px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar3 a {
+            text-decoration: none; /* Removes underline from the anchor (link) */
+            color: inherit; /* Ensures the link color matches the parent */
+        }
+
+        .below-horizontal-bar3 a:hover {
+            text-decoration: underline; /* Optional: Adds underline on hover */
+            color: black;
+        }
+
+        .below-horizontal-bar4{
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            color: blue;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 1px; /* Adjust this to move it further down */
+            left: 70px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar5{
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            color: blue;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 1px; /* Adjust this to move it further down */
+            left: 105px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar7{
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            color: black;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 0px; /* Adjust this to move it further down */
+            left: 35px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar8{
+            white-space: nowrap; /* Prevents the text from wrapping to the next line */
+            color: #444;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 3px;
+            font-size: 15px;
+            display: inline-block;
+            width: auto;
+            position: absolute;
+            top: 1px; /* Adjust this to move it further down */
+            left: 190px; /* Adjust this to position it horizontally */
+            z-index: 2; /* Ensure it's on top but not overlapping */
+        }
+
+        .below-horizontal-bar8 a:hover {
+            text-decoration: none; /* Disable underline on hover */
+        }
+
+        .below-horizontal-bar9 {
+            color: black;
+            position: absolute;
+            top: 87px;
+            left: -560px;
+
+        }
+
+        /* Spotlight grid container */
+        .spotlight-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 columns */
+            grid-gap: 20px; /* Gap between items */
+            max-width: 1200px; /* Set a maximum width */
+            margin: 0 auto; /* Center the grid */
+            padding-top: 30px; /* Add space at the top */
+            transform: translateX(-600px); /* Move the grid 100px to the left */
+        }
+
+        .spotlight {
+            background-color: white;
+            padding: 5px; /* Adjust padding */
+            border: 1px solid #ccc;
+            width: 150px; /* Set the width of the spotlight box */
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center-align content */
+            text-align: center; /* Center-align text */
+        }
+
+        .spotlight img {
+            width: 100%; /* Make the image fit the container */
+            height: auto;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .spotlight h3 {
+            font-size: 12px; /* Adjust font size */
+            color: #0073e6;
+            margin: 0 0 5px;
+            word-wrap: break-word; /* Ensure long words wrap */
+            overflow-wrap: break-word;
+            white-space: normal; /* Allow the title to break into multiple lines */
+        }
+
+        .spotlight p {
+            font-size: 10px; /* Adjust font size for views and channel */
+            color: #666;
+            margin: 5px 0;
+            white-space: normal; /* Allow content to wrap if necessary */
+        }
+
+
+        .spotlight a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        .spotlight a:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Customizable line -->
+    <hr class="custom-line">
+
+    <!-- Top right image -->
+    <a href="Old-School Youtube.html">
+        <img src="Old-School Youtube.jpg" alt="Top Right Image" class="top-right-image">
+    </a>
+
+    <!-- Container for links -->
+    <div class="link-container">
+        <a href="Old-School Youtube.html">Home</a>
+        <a href="#videos">Videos</a>
+        <a href="#Channels">Channels</a>
+        <a href="#shows">Shows</a>
+    </div>
+
+    <!-- Container for the search bar -->
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="">
+        <button type="button" class="search-button">Search</button>
+    </div>
+
+    <!-- Create account and Sign in links -->
+    <div class="link-container3">
+        <a href="#">Create Account</a>
+        <p><span class="non-clickable-text">or</span></p>
+        <a href="#">Sign In</a>
+    </div>
+
+    <!-- Subscriptions and History links -->
+    <div class="link-container2">
+        <a href="#">Subscriptions</a>
+        <a href="#">History</a>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h3>Categories</h3>
+        <a href="#">Autos & Vehicles</a>
+        <a href="#">Comedy</a>
+        <a href="#">Education</a>
+        <a href="#">Entertainment</a>
+        <a href="#">Film & Animation</a>
+        <a href="#">Gaming</a>
+        <a href="#">Howto & Style</a>
+        <a href="#">Music</a>
+        <a href="#">News & Politics</a>
+        <a href="#">Nonprofits & Activism</a>
+        <a href="#">People & Blogs</a>
+        <a href="#">Pets & Animals</a>
+        <a href="#">Science & Technology</a>
+        <a href="#">Sports</a>
+        <a href="#">Travel & Events</a>
+        <p><strong> Shows </strong></p>
+        <p> <strong> Movies </strong> </p>
+        <div class="nested">
+            <a href="#">Trailers</a>
+        </div>
+        <p><strong> Contests </strong></p>
+        <p><strong> Events </strong></p>
+        <p> <strong> Recommended for You </strong> </p>
+    </div>
+
+    <div class="nav-bar">
+        <a href="#" class="tab active-tab">Videos</a>
+        <a href="#" class="tab">Channels</a>
+        <a href="#" class="subscribe-btn">Subscribe</a>
+    </div>
+
+    <div class="Upload">
+        <a href="#" class="Upload">Upload</a>
+    </div>
+
+    <!-- Below Horizontal bar "All categories" -->
+    <div class="below-horizontal-bar">
+        <a class="All Categories">All Categories</a>
+
+    <div class="below-horizontal-bar2">
+        <a class="In:">In:</a>
+
+    <div class= "below-horizontal-bar3">
+        <a href="#" class="Popular"> Popular</a>
+
+    <div class= "below-horizontal-bar4">
+        <a href="#" class="Most Viewed"> Most Viewed</a>
+
+    <div class= "below-horizontal-bar5">
+        <a href="#" class="HD"> HD</a>
+
+    <div class= "below-horizontal-bar7">
+        <a href="#" class="more"> more▾</a> 
+
+    
+    <div class= "below-horizontal-bar8">
+        <a class="When:"></a> 
+        <a class="Today"></a>
+
+    <!--Today▾-->
+    <!--When:-->
+
+    <!-- Spotlight grid (4x3 layout) -->
+    <div class="spotlight-grid">
+        <!-- Spotlight items -->
+        <div class="spotlight">
+            <img src="Si Te Acuerdas de Mi - Magnate & Valentino (Official Video).jpg" alt="Si Te Acuerdas de Mi - Magnate & Valentino (Official Video)">
+            <h3><a href="#">Si Te Acuerdas de Mi - Magnate & Valentino (Official Video)</a></h3>
+            <p>619,026 views <a href="#">Magnatepr</a></p>
+        </div>
+
+        <div class="spotlight"> <!--FRED2009-->
+            <img src="Hector El Father - Sola.jpg" alt="Hector El Father - Sola (Official Music Video)">
+            <h3><a href="#">Hector El Father - Sola (Official Music Video)</a></h3>
+            <p>609,026 views <a href="#">HectorElFatherOfficial</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Tony Dize -Permitame.jpg" alt="Tony Dize -Permitame">
+            <h3><a href="#">Tony Dize - Permitame (Official Music Video)</a></h3>
+            <p>598,026 views <a href="#">Tony Dize</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Calle 13 - Atrevete te te.jpg" alt="Calle 13 - Atrevete te te">
+            <h3><a href="#">Calle 13 - Atrevete te te (Explicit)</a></h3>
+            <p>469,026 views <a href="#">elvecindariocalle13</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="R.K.M, Ken-Y - Down.jpg" alt="R.K.M, Ken-Y - Down">
+            <h3><a href="#">R.K.M, Ken-Y - Down (Official Music Video)</a></h3>
+            <p>549,026 views <a href="#">RKM Y KEN-Y</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="R.K.M, Ken-Y - Igual Que Ayer.jpg" alt="R.K.M, Ken-Y - Igual Que Ayer">
+            <h3><a href="#">R.K.M, Ken-Y - Igual Que Ayer (Official Music Video)</a></h3>
+            <p>719,026 views <a href="#">RAKIM Y KEN-Y</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Owl City - Fireflies.jpg" alt="Owl City - Fireflies">
+            <h3><a href="#">Owl City - Fireflies (Official Music Video)</a></h3>
+            <p>579,026 views <a href="#">Owl City</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Plain White T's.jpg" alt="Plain White T's">
+            <h3><a href="#">Plain White T's - Hey There Delilah</a></h3>
+            <p>959,026 views <a href="#">HollywoodRecordsVEVO</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Classic Game Room HD - CALL OF DUTY WORLD AT WAR review Pt1.jpg" alt="Classic Game Room HD - CALL OF DUTY WORLD AT WAR review Pt1">
+            <h3><a href="#">Classic Game Room HD - CALL OF DUTY WORLD AT WAR review Pt1</a></h3>
+            <p>49,026 views <a href="#">Classic Game Room</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Virtual Boy - Angry Video Game Nerd (AVGN).jpg" alt="Virtual Boy - Angry Video Game Nerd (AVGN)">
+            <h3><a href="#">Virtual Boy - Angry Video Game Nerd (AVGN)</a></h3>
+            <p>12,026 views <a href="#">Cinemassacre</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Super Mario Bros. review (Black Box series) - Pat the NES Punk.jpg" alt="Super Mario Bros. review (Black Box series) - Pat the NES Punk">
+            <h3><a href="#">Super Mario Bros. review (Black Box series) - Pat the NES Punk</a></h3>
+            <p>9,026 views <a href="#">Pat the NES Punk</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Dragon's Lair (NES) - Angry Video Game Nerd (AVGN).jpg" alt="Dragon's Lair (NES) - Angry Video Game Nerd (AVGN)">
+            <h3><a href="#">Dragon's Lair (NES) - Angry Video Game Nerd (AVGN)</a></h3>
+            <p>8,026 views <a href="#">Cinemassacre</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="Top 10 Weirdest Creepiest Video Game Characters.jpg" alt="Top 10 Weirdest/Creepiest Video Game Characters">
+            <h3><a href="#">Top 10 Weirdest/Creepiest Video Game Characters</a></h3>
+            <p>7,026 views <a href="#">PeanutButterGamer</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="The Legend of Zelda Spirit Tracks Action Replay Codes (U).jpg" alt="The Legend of Zelda Spirit Tracks Action Replay Codes (U)">
+            <h3><a href="#">The Legend of Zelda: Spirit Tracks Action Replay Codes (U)</a></h3>
+            <p>4,026 views <a href="#">newgrounder999</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="1234.jpg" alt="Pokemon Fire Red-Gameshark Tutorial And Examples">
+            <h3><a href="#">Pokemon Fire Red-Gameshark Tutorial And Examples</a></h3>
+            <p>4,026 views <a href="#">123irsyad96</a></p>
+        </div>
+
+        <div class="spotlight">
+            <img src="mario.jpg" alt="mario">
+            <h3><a href="#">Mario World gameshark codes</a></h3>
+            <p>1,026 views <a href="#">Nintendorulez</a></p>
+        </div>
