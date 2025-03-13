@@ -21,11 +21,10 @@
 
         .video-background {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover; /* ✅ Ensures the video covers the screen */
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
             z-index: -1;
         }
 
@@ -116,56 +115,6 @@
             background-clip: text;
             color: transparent;
         }
-
-        /* ✅ Responsive Design for Mobile */
-        @media screen and (max-width: 768px) {
-            /* Adjust navbar for mobile */
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-                padding: 0.5rem;
-            }
-
-            .navbar ul {
-                flex-direction: column;
-                text-align: center;
-                padding: 0;
-            }
-
-            .navbar ul li {
-                margin: 0.5rem 0;
-            }
-
-            /* Adjust video background */
-            .video-background {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            /* Adjust text size */
-            .content {
-                width: 95%;
-                text-align: center;
-                padding: 1rem;
-                margin-top: 7rem;
-            }
-
-            .content h1 {
-                font-size: 2rem; /* Smaller text for mobile */
-            }
-
-            .content .description {
-                font-size: 1rem;
-            }
-
-            /* Adjust big-J positioning */
-            .big-j {
-                font-size: 10rem;
-                right: 1rem;
-                bottom: 1rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -173,43 +122,59 @@
     <!-- My Video Background -->
     <video autoplay muted loop class="video-background" id="bg-video">
         <source src="https://hector985mateo.github.io/assets/videos/CodeVid2.mp4" type="video/mp4">
+        <!-- <source src="assets/videos/CodeVid2.mp4" type="video/mp4" id="video-source"> -->
         Your browser does not support the video tag.
     </video>
 
+
     <nav class="navbar">
         <div class="logo">
+            <!-- <span>H</span> -->
             <p><!-- Hector --></p>
         </div>
         <ul>
             <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
+
             <li><a href="About.html"><i class="user-icon"></i> About</a></li>
+
             <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
-            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/" target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
-            <li><a href="https://github.com/Hector985Mateo" target="_blank"><i class="email-icon"></i> GitHub</a></li>
+
+            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
+                target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+
+            <li><a href="https://github.com/Hector985Mateo"
+                target="_blank"><i class="email-icon"></i> GitHub</a></li>
+
             <li><a href="Resume.html"><i class="resume"></i> Resume</a></li> 
+
         </ul>
     </nav>
+
 
     <div class="content">
         <h1>Hi, <br> I'm <span class="name">Hector</span>, <br> Data Scientist 
             and Web Developer.</h1>
-        <p class="description" style="background-color: black; color: white; padding: 10px; display: inline-block;">
-            Data Visualizer / Data Analyst / Web Developer / Media Archivist
-        </p>
+            <p class="description" style="background-color: black; color: white; padding: 10px; display: inline-block;">Data Visualizer / Data Analyst / Web Developer / Media Archivist</p>
+        <!-- <a href="#" class="contact-btn">CONTACT ME</a> -->
     </div>
 
     <script>
         const videos = [
-            "assets/videos/CodeVid2.mp4"
+            //"Codevid1.mp4",    // Coding backgorund
+            "Codevid2.mp4",    // Office working setup
+            //"Codevid3.mp4",
+            //"Codevid4.mp4",   // Blurry shaky 
+            //"Codevid5.mp4"
         ];
 
         const randomVideo = videos[Math.floor(Math.random() * videos.length)];
 
         document.getElementById('video-source').src = randomVideo;
+
         document.getElementById('bg-video').load();
     </script>
-
 </body>
 </html>
+
 
 ©Mateo2025
