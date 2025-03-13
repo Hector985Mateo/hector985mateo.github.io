@@ -47,6 +47,8 @@
             width: 100%;
             overflow-x: auto; /* Enables left-right scrolling */
             white-space: nowrap; /* Prevents menu items from wrapping */
+            scroll-behavior: smooth; /* Makes scrolling smoother */
+            padding-bottom: 5px; /* Prevents scrollbar from overlapping text */
         }
 
         .navbar ul {
@@ -61,6 +63,10 @@
             margin-right: 1.5rem;
             text-align: left;
             display: inline-block; /* Keeps items in a single row */
+        }
+
+        .navbar ul li:last-child {
+            padding-right: 20px; /* ✅ Ensures last item (Resume) is fully visible */
         }
 
         .navbar ul li a {
