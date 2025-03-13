@@ -12,18 +12,20 @@
             color: #fff;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             justify-content: flex-start;
             align-items: center;
-            /*overflow: hidden; /* Ensure no scrollbars appear */
+            overflow-y: auto; /* ✅ Allows scrolling */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
         }
 
         .video-background {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%; 
-            min-height: 100%;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
             z-index: -1;
         }
 
@@ -38,12 +40,16 @@
             top: 5px;
             left: 0;
             z-index: 1000;
+            overflow: hidden;
         }
 
-        .navbar .logo {
-            font-size: 2rem;
-            text-align: left;
-            margin-right: 2rem;
+        /* Scrollable navbar container for mobile */
+        .navbar .menu-container {
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            padding-bottom: 5px;
         }
 
         .navbar ul {
@@ -51,11 +57,17 @@
             padding: 0;
             margin: 0;
             display: flex;
+            flex-wrap: nowrap;
         }
 
         .navbar ul li {
             margin-right: 1.5rem;
             text-align: left;
+            display: inline-block;
+        }
+
+        .navbar ul li:last-child {
+            padding-right: 20px; /* ✅ Ensures last item is fully visible */
         }
 
         .navbar ul li a {
@@ -64,25 +76,23 @@
             text-decoration: none;
         }
 
-
         .container {
             flex: 1;
             padding: 2rem;
             text-align: left;
-            margin-top: 3rem; /* move the layout up or down */
+            margin-top: 6rem; /* Adjust to prevent overlap with navbar */
             width: 90%;
             max-width: 1200px;
             background-color: rgba(0, 0, 0, 0.9);
-            padding: 2rem;
             border-radius: 10px;
-            display: flex; /* Use flexbox to align text and image side by side */
+            display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            z-index: 1; /* Ensure content is above the video */
+            z-index: 1;
         }
 
         .text-content {
-            width: 60%; /* Adjust the width of the text area */
+            width: 60%;
         }
 
         h1 {
@@ -104,33 +114,48 @@
         }
 
         .image-content {
-            width: 35%; /* Adjust the width of the image area */
-            margin-left: 2rem; /* Space between text and image */
+            width: 35%;
+            margin-left: 2rem;
         }
 
         .image-content img {
             width: 100%;
             border-radius: 10px;
+            margin-bottom: 10px;
         }
 
-        .cta {
-            margin-top: 2rem;
-            text-align: center;
-        }
+        /* ✅ Enable scrolling only on mobile */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                overflow: hidden;
+            }
 
-        .cta a {
-            color: #00ff00;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border: 2px solid #00ff00;
-            padding: 0.5rem 1.5rem;
-            border-radius: 5px;
-            display: inline-block;
-        }
+            .navbar .menu-container {
+                overflow-x: auto;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
 
-        .cta a:hover {
-            background-color: #00ff00;
-            color: #000;
+            .navbar .menu-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* ✅ Make text and images stack on small screens */
+            .container {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                margin-top: 7rem;
+            }
+
+            .text-content {
+                width: 100%;
+            }
+
+            .image-content {
+                width: 80%;
+                margin-left: 0;
+            }
         }
     </style>
 </head>
@@ -139,32 +164,22 @@
     <!-- Video Background -->
     <video autoplay muted loop class="video-background">
         <source src="https://hector985mateo.github.io/assets/videos/StarVid11.mp4" type="video/mp4">
-        <!-- <source src="StarVid2.mp4" type="video/mp4"> -->
     </video>
 
     <nav class="navbar">
         <div class="logo">
-            <!-- <span>H</span> -->
             <p><!-- Hector --></p>
         </div>
-        <ul>
-            
-            <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
-
-            <li><a href="About.html"><i class="user-icon"></i> About</a></li>
-
-            <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
-
-            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
-              target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
-
-            <li><a href="https://github.com/Hector985Mateo"
-              target="_blank"><i class="email-icon"></i> GitHub</a></li>
-
-            <li><a href="Resume.html"><i class="resume"></i> Resume</a></li>
-
-            <!-- <li><a href="#"><i class="settings-icon"></i> Services</a></li> -->
-        </ul>
+        <div class="menu-container">
+            <ul>
+                <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
+                <li><a href="About.html"><i class="user-icon"></i> About</a></li>
+                <li><a href="Portfolio.html"><i class="eye-icon"></i> Portfolio</a></li>
+                <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/" target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/Hector985Mateo" target="_blank"><i class="email-icon"></i> GitHub</a></li>
+                <li><a href="Resume.html"><i class="resume"></i> Resume</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="container">
@@ -173,27 +188,21 @@
             <p>Hello! I'm Hector, a passionate Data Scientist and Web Developer with a knack for turning data into actionable insights and building interactive web experiences.</p>
             
             <h2>Background</h2>
-            <p>My journey began at the University of California Berkeley, where I was introduced to python and Java by John DeNero, Michael Ball and Josh Hug. From writing 'Hello World!' to Build Your Own World (BYOW) I discovered my passion in writing code and have been teaching myself new techniques, skills and now making web pages.</p>
+            <p>My journey began at the University of California Berkeley, where I was introduced to Python and Java by John DeNero, Michael Ball, and Josh Hug. From writing 'Hello World!' to Build Your Own World (BYOW), I discovered my passion for coding and have been teaching myself new techniques and skills.</p>
             
             <h2>Skills & Expertise</h2>
-            <p>I'm proficient in various programming languages and tools, including Python, JavaScript, and SQL. My expertise lies in web designing, data visualization, data cleaning and data analysis. I prefer SQL and python as my choice of coding language.</p>
-            <!--
-            <h2>Mission</h2>
-            <p>My mission is to leverage data and technology to create meaningful solutions that impact lives and businesses. I am driven by a passion for continuous learning and innovation.</p>
-            -->
+            <p>I'm proficient in Python, JavaScript, and SQL, with expertise in web design, data visualization, and data analysis.</p>
+            
             <h2>Personal Interests</h2>
-            <p>I'm working on different projects, from web creations, short video game BYOW (Java) and even archiving programs/files I like such as my Pokemon save files, lost media, and many more.</p>
+            <p>I'm working on different projects, including web development, game development, and media archiving projects.</p>
         </div>
         <div class="image-content">
             <img src="assets/images/personal_img/Profile2.jpg" alt="Profile Image 2">
             <img src="assets/images/personal_img/Profile.jpg" alt="Profile Image">
-
-            <!-- <img src="Profile2.jpg">
-            <img src="Profile.jpg"> -->
         </div>
     </div>
+
 </body>
 </html>
-
 
 ©Mateo2025
