@@ -69,14 +69,14 @@
             flex: 1;
             padding: 2rem;
             text-align: left;
-            margin-top: 2rem; /* Ensures correct positioning WAS ONCE 5 */
+            margin-top: 2rem; /* Ensures correct positioning */
             width: 90%;
             max-width: 1200px;
         }
 
-        /* ✅ Set h1 size explicitly */
-        h1 {
-            font-size: 3rem; /* Adjust size here */
+        /* ✅ Reduced h1 size only for this page */
+        body.resumepage h1 {
+            font-size: 2rem !important; /* Smaller heading */
             margin: 0 0 1.5rem 0;
             color: #00ff00;
         }
@@ -130,7 +130,7 @@
 
     </style>
 </head>
-<body>
+<body class="resumepage"> <!-- ✅ Added class to target this page -->
 
     <nav class="navbar">
         <div class="logo">
