@@ -2,25 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Hector's Portfolio</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #000;
             color: #fff;
-            padding: 2rem;
             margin: 0;
-        }
-
-        .container {
+            padding: 0;
             display: flex;
-            width: 90%;
-            height: 90%;
-            max-width: 1200px;
-            background-color: rgba(0, 0, 0, 0.7);
-            position: relative;
-            margin: 0 auto;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto; /* ✅ Allows vertical scrolling */
+            overflow-x: hidden; /* ✅ Prevents horizontal scrolling */
         }
 
         .navbar {
@@ -34,12 +29,16 @@
             top: 0;
             left: 0;
             z-index: 1000;
+            overflow: hidden;
         }
 
-        .navbar .logo {
-            font-size: 2rem;
-            text-align: left;
-            margin-right: 2rem;
+        /* Scrollable container for the menu */
+        .navbar .menu-container {
+            width: 100%;
+            overflow-x: auto; /* Enables left-right scrolling */
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            padding-bottom: 5px; /* Prevents scrollbar overlap */
         }
 
         .navbar ul {
@@ -47,11 +46,16 @@
             padding: 0;
             margin: 0;
             display: flex;
+            flex-wrap: nowrap;
         }
 
         .navbar ul li {
             margin-right: 1.5rem;
-            text-align: left;
+            display: inline-block;
+        }
+
+        .navbar ul li:last-child {
+            padding-right: 20px;
         }
 
         .navbar ul li a {
@@ -62,9 +66,9 @@
 
         .content {
             flex: 1;
-            padding: 1rem;
+            padding: 2rem;
             text-align: left;
-            margin-top: 1rem;
+            margin-top: 5rem; /* Ensures correct positioning */
             width: 90%;
             max-width: 1200px;
         }
@@ -97,33 +101,54 @@
             text-decoration: underline;
         }
 
-        /* This is the copyright thing "@Mateo2024"*/
+        /* ✅ Mobile scrolling improvements */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                overflow: hidden;
+            }
+
+            .navbar .menu-container {
+                overflow-x: auto; /* Enables left-right scrolling */
+                white-space: nowrap;
+                scroll-behavior: smooth;
+                max-width: 100vw; /* Prevents menu overflow */
+                touch-action: auto; /* ✅ Enables smooth swiping */
+                scrollbar-width: none; /* Hides scrollbar in Firefox */
+                -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
+            }
+
+            /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+            .navbar .menu-container::-webkit-scrollbar {
+                display: none;
+            }
+        }
+
+        /* This is the copyright thing "@Mateo2024" */
         .footer {
-            position: absolute;
-            bottom: 60;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
             font-size: 1em;
             color: white;
-            padding: 0px;
+            padding: 1rem 0;
         }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <div class="logo">
             <p><!-- Hector --></p>
         </div>
-        <ul>
-            <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
-            <li><a href="About"><i class="user-icon"></i> About</a></li>
-            <li><a href="Portfolio"><i class="eye-icon"></i> Portfolio</a></li>
-            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
-                target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
-            <li><a href="https://github.com/Hector985Mateo"
-                target="_blank"><i class="email-icon"></i> GitHub</a></li>
-            <li><a href="Resume"><i class="resume"></i> Resume</a></li>
-        </ul>
+        <!-- Scrollable container for the menu -->
+        <div class="menu-container">
+            <ul>
+                <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
+                <li><a href="About"><i class="user-icon"></i> About</a></li>
+                <li><a href="Portfolio"><i class="eye-icon"></i> Portfolio</a></li>
+                <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/" target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/Hector985Mateo" target="_blank"><i class="email-icon"></i> GitHub</a></li>
+                <li><a href="Resume"><i class="resume"></i> Resume</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="content">
@@ -131,30 +156,26 @@
 
         <div class="portfolio-item">
             <h2>Website Replications</h2>
-            <p>Various websites replicas from the past or present. These websites are designed for personal and educational use only. It provides a platform for learning and experimenting with web design and development. All content is intended for individual practice and has not benn or should no be used for commercial purposes.</p>
-            <a href="Old-School Youtube.html" target="_blank">Youtube (2009)</a> <!-- , <a href="#" target="_blank">FaceBook</a>, <a href="#" target="_blank">View Project</a>, <a href="#" target="_blank">View Project</a>
-            -->
+            <p>Various websites replicas from the past or present. These websites are designed for personal and educational use only. It provides a platform for learning and experimenting with web design and development. All content is intended for individual practice and has not been or should not be used for commercial purposes.</p>
+            <a href="Old-School Youtube.html" target="_blank">Youtube (2009)</a>
         </div>
 
         <div class="portfolio-item">
             <h2>Games</h2>
             <p>Simple and playful games designed for personal enjoyment and educational purposes. These projects serve as a platform to practice and refine web development skills, focusing on interactive and user-friendly gameplay. All games are intended for individual practice and experimentation, not for commercial use.</p>
-            <a href="Tic-Tac-Toe.html" target="_blank">Tic-Tac-Toe</a> <!-- , <a href="x" target="_blank">View Project </a>, <a href="x" target="_blank">View Project </a>, <a href="x" target="_blank">View Project </a>
-            -->
+            <a href="Tic-Tac-Toe.html" target="_blank">Tic-Tac-Toe</a>
         </div>
 
         <div class="portfolio-item">
             <h2>Project 3 (COMING SOON)</h2>
-            <p>Will be in GitHub and is shown upon is requested as the files are not meant to be distributed as it would lead to plagiarism.</p>
-            <!-- <a href="#" target="_blank">View Project</a>
-            -->
+            <p>Will be in GitHub and is shown upon request, as the files are not meant to be distributed due to plagiarism concerns.</p>
         </div>
 
     </div>
 
-
     <div class="footer">
         ©Mateo2025
     </div>
+
 </body>
 </html>
