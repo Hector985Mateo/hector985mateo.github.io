@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Hector's About</title>
     <style>
         body {
@@ -12,10 +12,11 @@
             color: #fff;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            min-height: 100vh;
             justify-content: flex-start;
             align-items: center;
-            /*overflow: hidden; /* Ensure no scrollbars appear */
+            overflow-y: auto; /* ✅ Allows vertical scrolling */
+            overflow-x: hidden; /* ✅ Prevents horizontal scrolling */
         }
 
         .video-background {
@@ -35,15 +36,19 @@
             justify-content: flex-start;
             align-items: center;
             position: fixed;
-            top: 5px;
+            top: 0;
             left: 0;
             z-index: 1000;
+            overflow: hidden;
         }
 
-        .navbar .logo {
-            font-size: 2rem;
-            text-align: left;
-            margin-right: 2rem;
+        /* Scrollable container for the menu */
+        .navbar .menu-container {
+            width: 100%;
+            overflow-x: auto; /* Enables left-right scrolling */
+            white-space: nowrap;
+            scroll-behavior: smooth;
+            padding-bottom: 5px; /* Prevents scrollbar overlap */
         }
 
         .navbar ul {
@@ -51,11 +56,16 @@
             padding: 0;
             margin: 0;
             display: flex;
+            flex-wrap: nowrap;
         }
 
         .navbar ul li {
             margin-right: 1.5rem;
-            text-align: left;
+            display: inline-block;
+        }
+
+        .navbar ul li:last-child {
+            padding-right: 20px;
         }
 
         .navbar ul li a {
@@ -64,25 +74,24 @@
             text-decoration: none;
         }
 
-
         .container {
             flex: 1;
             padding: 2rem;
             text-align: left;
-            margin-top: 3rem; /* move the layout up or down */
+            margin-top: 5rem; /* Ensures content is correctly positioned */
             width: 90%;
             max-width: 1200px;
             background-color: rgba(0, 0, 0, 0.9);
             padding: 2rem;
             border-radius: 10px;
-            display: flex; /* Use flexbox to align text and image side by side */
+            display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            z-index: 1; /* Ensure content is above the video */
+            z-index: 1;
         }
 
         .text-content {
-            width: 60%; /* Adjust the width of the text area */
+            width: 60%;
         }
 
         h1 {
@@ -104,8 +113,8 @@
         }
 
         .image-content {
-            width: 35%; /* Adjust the width of the image area */
-            margin-left: 2rem; /* Space between text and image */
+            width: 35%;
+            margin-left: 2rem;
         }
 
         .image-content img {
@@ -132,6 +141,28 @@
             background-color: #00ff00;
             color: #000;
         }
+
+        /* ✅ Mobile scrolling improvements */
+        @media screen and (max-width: 768px) {
+            .navbar {
+                overflow: hidden;
+            }
+
+            .navbar .menu-container {
+                overflow-x: auto; /* Enables left-right scrolling */
+                white-space: nowrap;
+                scroll-behavior: smooth;
+                max-width: 100vw; /* Prevents menu overflow */
+                touch-action: auto; /* ✅ Enables smooth swiping */
+                scrollbar-width: none; /* Hides scrollbar in Firefox */
+                -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
+            }
+
+            /* Hide scrollbar for WebKit browsers (Chrome, Safari) */
+            .navbar .menu-container::-webkit-scrollbar {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -139,32 +170,23 @@
     <!-- Video Background -->
     <video autoplay muted loop class="video-background">
         <source src="https://hector985mateo.github.io/assets/videos/StarVid11.mp4" type="video/mp4">
-        <!-- <source src="StarVid2.mp4" type="video/mp4"> -->
     </video>
 
     <nav class="navbar">
         <div class="logo">
-            <!-- <span>H</span> -->
             <p><!-- Hector --></p>
         </div>
-        <ul>
-            
-            <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
-
-            <li><a href="About"><i class="user-icon"></i> About</a></li>
-
-            <li><a href="Portfolio"><i class="eye-icon"></i> Portfolio</a></li>
-
-            <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/"
-              target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
-
-            <li><a href="https://github.com/Hector985Mateo"
-              target="_blank"><i class="email-icon"></i> GitHub</a></li>
-
-            <li><a href="Resume"><i class="resume"></i> Resume</a></li>
-
-            <!-- <li><a href="#"><i class="settings-icon"></i> Services</a></li> -->
-        </ul>
+        <!-- Scrollable container for the menu -->
+        <div class="menu-container">
+            <ul>
+                <li><a href="https://hector985mateo.github.io/"><i class="home-icon"></i> Home</a></li>
+                <li><a href="About"><i class="user-icon"></i> About</a></li>
+                <li><a href="Portfolio"><i class="eye-icon"></i> Portfolio</a></li>
+                <li><a href="https://www.linkedin.com/in/hector-juarez-mateo-a3a724180/" target="_blank"><i class="email-icon"></i> LinkedIn</a></li>
+                <li><a href="https://github.com/Hector985Mateo" target="_blank"><i class="email-icon"></i> GitHub</a></li>
+                <li><a href="Resume"><i class="resume"></i> Resume</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="container">
@@ -173,27 +195,21 @@
             <p>Hello! I'm Hector, a passionate Data Scientist and Web Developer with a knack for turning data into actionable insights and building interactive web experiences.</p>
             
             <h2>Background</h2>
-            <p>My journey began at the University of California Berkeley, where I was introduced to python and Java by John DeNero, Michael Ball and Josh Hug. From writing 'Hello World!' to Build Your Own World (BYOW) I discovered my passion in writing code and have been teaching myself new techniques, skills and now making web pages.</p>
+            <p>My journey began at the University of California Berkeley, where I was introduced to Python and Java by John DeNero, Michael Ball, and Josh Hug. From writing 'Hello World!' to Build Your Own World (BYOW), I discovered my passion for coding and have been teaching myself new techniques and skills, now making web pages.</p>
             
             <h2>Skills & Expertise</h2>
-            <p>I'm proficient in various programming languages and tools, including Python, JavaScript, and SQL. My expertise lies in web designing, data visualization, data cleaning and data analysis. I prefer SQL and python as my choice of coding language.</p>
-            <!--
-            <h2>Mission</h2>
-            <p>My mission is to leverage data and technology to create meaningful solutions that impact lives and businesses. I am driven by a passion for continuous learning and innovation.</p>
-            -->
+            <p>I'm proficient in various programming languages and tools, including Python, JavaScript, and SQL. My expertise lies in web designing, data visualization, data cleaning, and data analysis. I prefer SQL and Python as my choice of coding language.</p>
+            
             <h2>Personal Interests</h2>
-            <p>I'm working on different projects, from web creations, short video game BYOW (Java) and even archiving programs/files I like such as my Pokemon save files, lost media, and many more.</p>
+            <p>I'm working on different projects, from web creations to short video games (BYOW in Java) and even archiving programs/files I like, such as my Pokémon save files, lost media, and many more.</p>
         </div>
         <div class="image-content">
             <img src="assets/images/personal_img/Profile2.jpg" alt="Profile Image 2">
             <img src="assets/images/personal_img/Profile.jpg" alt="Profile Image">
-
-            <!-- <img src="Profile2.jpg">
-            <img src="Profile.jpg"> -->
         </div>
     </div>
+
 </body>
 </html>
-
 
 ©Mateo2025
