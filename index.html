@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Hector's Main Page</title>
     <style>
         body {
@@ -15,8 +15,8 @@
             min-height: 100vh;
             justify-content: flex-start;
             align-items: center;
-            overflow-y: auto; /* ✅ Allows scrolling */
-            overflow-x: hidden; /* Prevents horizontal scrolling */
+            overflow-y: auto; /* ✅ Allows vertical scrolling */
+            overflow-x: hidden; /* ✅ Prevents horizontal scrolling */
         }
 
         .video-background {
@@ -39,7 +39,7 @@
             top: 0;
             left: 0;
             z-index: 1000;
-            overflow: hidden; /* Prevents scrolling by default */
+            overflow: hidden;
         }
 
         /* Scrollable container for the menu */
@@ -47,7 +47,7 @@
             width: 100%;
             overflow-x: auto; /* Enables left-right scrolling */
             white-space: nowrap; /* Prevents menu items from wrapping */
-            scroll-behavior: smooth; /* Makes scrolling smoother */
+            scroll-behavior: smooth;
             padding-bottom: 5px; /* Prevents scrollbar from overlapping text */
         }
 
@@ -56,17 +56,16 @@
             padding: 0;
             margin: 0;
             display: flex;
-            flex-wrap: nowrap; /* Ensures items stay in a single row */
+            flex-wrap: nowrap;
         }
 
         .navbar ul li {
             margin-right: 1.5rem;
-            text-align: left;
-            display: inline-block; /* Keeps items in a single row */
+            display: inline-block;
         }
 
         .navbar ul li:last-child {
-            padding-right: 20px; /* ✅ Ensures last item (Resume) is fully visible */
+            padding-right: 20px;
         }
 
         .navbar ul li a {
@@ -117,14 +116,18 @@
             color: transparent;
         }
 
-        /* ✅ Enable scrolling only on mobile */
+        /* ✅ Improved Mobile Scrolling */
         @media screen and (max-width: 768px) {
             .navbar {
-                overflow: hidden; /* Ensures only the menu scrolls */
+                overflow: hidden;
             }
 
             .navbar .menu-container {
                 overflow-x: auto; /* Enables left-right scrolling */
+                white-space: nowrap;
+                scroll-behavior: smooth;
+                max-width: 100vw; /* Prevents menu from overflowing screen width */
+                touch-action: auto; /* ✅ Enables smooth touch scrolling */
                 scrollbar-width: none; /* Hides scrollbar in Firefox */
                 -ms-overflow-style: none; /* Hides scrollbar in IE/Edge */
             }
@@ -140,7 +143,7 @@
 
     <!-- My Video Background -->
     <video autoplay muted loop class="video-background" id="bg-video">
-        <source src="https://hector985mateo.github.io/assets/videos/CodeVid2.mp4" type="video/mp4">
+        <source id="video-source" src="https://hector985mateo.github.io/assets/videos/CodeVid2.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
